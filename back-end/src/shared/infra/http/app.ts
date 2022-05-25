@@ -1,5 +1,7 @@
 import express from 'express'
+import 'reflect-metadata'
 
+import '@shared/container'
 import createConnection from '@shared/infra/typeorm'
 
 import { router } from './routes'
