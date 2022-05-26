@@ -1,8 +1,9 @@
 import React from 'react'
+import AppHeader from './components/app-header'
 
 const DefaultLayout: React.FC = ({ children }) => {
     return (
-        <h1>Hello World</h1>
+        <AppHeader />
     )
 }
 
