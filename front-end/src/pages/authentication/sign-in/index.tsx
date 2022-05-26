@@ -1,13 +1,60 @@
-import { Alert, Box, Button, Grid, LinearProgress, Link, Paper, TextField, Typography } from '@mui/material'
-import React from 'react'
+import { Alert, Box, Button, LinearProgress, Paper, TextField } from '@mui/material'
+import React, { useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import { useStyles } from './styles';
 import logo from '../../../assets/medcloud.svg'
+import { useAuth } from '../../../hooks/auth';
+
+
+interface ISignInFormData {
+    email: string
+    password: string
+}
+
 
 const SignIn: React.FC = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [mainError, setMainError] = useState('')
 
-    const classes = useStyles();
+    const { signIn } = useAuth()
+    const history = useHistory()
+    const classes = useStyles()
+
+    const validationSchema = yup.object().shape({
+        email: yup.string().email().required('Email is required'),
+        password: yup.string().required('Password is required'),
+    })
+
+    const { register, handleSubmit, formState: { errors } } = useForm<ISignInFormData>({
+        resolver: yupResolver(validationSchema)
+    })
+
+    const onSubmit = useCallback(
+        async (data: ISignInFormData) => {
+            try {
+                setIsLoading(true)
+                await signIn({
+                    email: data.email,
+                    password: data.password,
+                })
+
+                setIsLoading(false)
+                history.push('/dashboard')
+            } catch (err) {
+                setIsLoading(false)
+                setMainError('Teste de erro')
+            }
+        },
+        [signIn, history]
+    )
+
+    const handleChange = (formField: Error) => {
+        setMainError('')
+    }
 
     return (
         <Box className={classes.container}>
@@ -15,7 +62,7 @@ const SignIn: React.FC = () => {
                 <Paper elevation={3} className={classes.paperWrapper}>
                     <Box
                         component="form"
-                        // onSubmit={handleSubmit(onSubmit)} 
+                        onSubmit={handleSubmit(onSubmit)}
                         noValidate
                         data-testid="form"
                         className={classes.formBox}
@@ -28,28 +75,28 @@ const SignIn: React.FC = () => {
 
                         <TextField
                             required
-                            name="email"
+                            // name="email"
                             id="email"
                             label="Digite seu e-mail"
                             type="email"
                             autoFocus
-                        //   error={Boolean(errors.email)}
-                        //   {...register("email", 
-                        //     { onChange: (e) => handleChange(e) }
-                        //   )}
+                            error={Boolean(errors.email)}
+                            {...register("email",
+                                { onChange: (e) => handleChange(e) }
+                            )}
                         />
 
                         <TextField
                             required
-                            name="password"
+                            // name="password"
                             id="password"
                             label="Digite sua senha"
                             type="password"
                             autoComplete="new-password"
-                        //   error={Boolean(errors.password)}
-                        //   {...register("password", 
-                        //     { onChange: (e) => handleChange(e) }
-                        //   )}
+                            error={Boolean(errors.password)}
+                            {...register("password",
+                                { onChange: (e) => handleChange(e) }
+                            )}
                         />
 
 
@@ -63,13 +110,13 @@ const SignIn: React.FC = () => {
                             Acessar
                         </Button>
 
-                        {/* {isLoading && (
-              <LinearProgress className={classes.linearProgress} />
-            )}
+                        {isLoading && (
+                            <LinearProgress className={classes.linearProgress} />
+                        )}
 
-            {mainError !== '' && (
-              <Alert severity="error" className={classes.alert}>{mainError}</Alert>
-            )} */}
+                        {mainError !== '' && (
+                            <Alert severity="error" className={classes.alert}>{mainError}</Alert>
+                        )}
                     </Box>
                 </Paper>
             </Box >
