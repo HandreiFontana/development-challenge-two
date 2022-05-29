@@ -10,6 +10,12 @@ import {
     UserRepository,
     UserTokenRepository
 } from '@modules/authentication/infra/typeorm/repositories'
+import {
+    ICustomerRepository
+} from '@modules/application/repositories'
+import {
+    CustomerRepository
+} from '@modules/application/infra/typeorm/repositories'
 
 
 container.registerSingleton<IUserRepository>(
@@ -19,4 +25,8 @@ container.registerSingleton<IUserRepository>(
 container.registerSingleton<IUserTokenRepository>(
     'UserTokenRepository',
     UserTokenRepository
+)
+container.registerSingleton<ICustomerRepository>(
+    'CustomerRepository',
+    CustomerRepository
 )
