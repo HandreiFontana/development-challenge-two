@@ -27,7 +27,20 @@ class CustomerRepository implements ICustomerRepository {
     }
 
     async list(page: number, rowsPerPage: number): Promise<Customer[]> {
-        throw new Error("Method not implemented.");
+        const customers = await this.repository.createQueryBuilder('cus')
+            .select([
+                'cus.id as id',
+                'cus.name as name',
+                'cus.email as email',
+                'cus.birth_date as birthDate',
+                'cus.address as address'
+            ])
+            .addOrderBy('cus.name')
+            .offset(rowsPerPage * (page - 1))
+            .limit(rowsPerPage)
+            .getRawMany()
+
+        return customers
     }
 
     async get(id: string): Promise<Customer> {
