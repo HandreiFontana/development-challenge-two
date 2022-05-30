@@ -2,6 +2,7 @@ import { getRepository, Repository } from "typeorm";
 
 import { ICustomerDTO } from "@modules/application/dtos";
 import { ICustomerRepository } from "@modules/application/repositories";
+import { AppError } from "@shared/errors/app-error";
 
 import { Customer } from "../entities";
 
@@ -57,7 +58,7 @@ class CustomerRepository implements ICustomerRepository {
         const customer = await this.repository.findOne(id)
 
         if (!customer) {
-            throw new Error('Customer not found')
+            throw new AppError('Customer not found')
         }
 
         const newCustomer = this.repository.create({

@@ -8,6 +8,7 @@ import {
     IUserTokenRepository
 } from "@modules/authentication/repositories";
 import { IDateProvider } from "@shared/container/providers/date-provider/i-date-provider";
+import { AppError } from "@shared/errors/app-error";
 
 
 interface IRequest {
@@ -47,13 +48,13 @@ class AuthenticateUserUseCase {
         } = auth
 
         if (!user) {
-            throw new Error('Email or password incorrect')
+            throw new AppError('Email or password incorrect')
         }
 
         const passwordMatch = await compare(password, user.password)
 
         if (!passwordMatch) {
-            throw new Error('Email or password incorrect')
+            throw new AppError('Email or password incorrect')
         }
 
         const token = sign({}, secret_token, {

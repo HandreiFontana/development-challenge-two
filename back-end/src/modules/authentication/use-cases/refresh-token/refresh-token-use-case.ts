@@ -1,9 +1,10 @@
 import { inject, injectable } from "tsyringe"
+import { sign, verify } from "jsonwebtoken"
 
 import { IUserTokenRepository } from "@modules/authentication/repositories"
 import { IDateProvider } from "@shared/container/providers/date-provider/i-date-provider"
-import { sign, verify } from "jsonwebtoken"
 import auth from "@config/auth"
+import { AppError } from "@shared/errors/app-error"
 
 
 interface IPayload {
@@ -37,7 +38,7 @@ class RefreshTokenUseCase {
         )
 
         if (!userToken) {
-            throw new Error('Refresh token does not exists!')
+            throw new AppError('Refresh token does not exists!')
         }
 
         await this.userTokenRepository.deleteById(userToken.id)
