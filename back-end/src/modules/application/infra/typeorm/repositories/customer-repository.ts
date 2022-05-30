@@ -45,7 +45,13 @@ class CustomerRepository implements ICustomerRepository {
     }
 
     async get(id: string): Promise<Customer> {
-        throw new Error("Method not implemented.");
+        const customer = await this.repository.findOne(id)
+
+        if (!customer) {
+            throw new AppError('Customer not found')
+        }
+
+        return customer
     }
 
     async update({
