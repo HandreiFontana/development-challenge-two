@@ -6,14 +6,14 @@ import { CreateCustomerUseCase } from "./"
 
 class CreateCustomerController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, email, birthDate, address } = request.body
+        const { name, email, birthDateUnformatted, address } = request.body
 
         const createCustomerUseCase = container.resolve(CreateCustomerUseCase)
 
         const customer = await createCustomerUseCase.execute({
             name,
             email,
-            birthDate,
+            birthDateUnformatted,
             address
         })
 
