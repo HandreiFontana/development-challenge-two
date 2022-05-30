@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { ListCustomerUseCase } from '../list-customer'
 
-import { DeleteCustomerUseCase } from './delete-customer-use-case'
+import { DeleteCustomerUseCase } from './'
 
 
 class DeleteCustomerController {

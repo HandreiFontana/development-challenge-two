@@ -2,11 +2,11 @@ import { Router } from 'express'
 
 import { CreateCustomerController } from '@modules/application/use-cases/create-customer'
 import { ListCustomerController } from '@modules/application/use-cases/list-customer'
-import { UpdateCustomerController } from '@modules/application/use-cases/update-customer/update-customer-controller'
-import { GetCustomerController } from '@modules/application/use-cases/get-customer/get-customer-controller'
+import { UpdateCustomerController } from '@modules/application/use-cases/update-customer'
+import { GetCustomerController } from '@modules/application/use-cases/get-customer'
+import { DeleteCustomerController } from '@modules/application/use-cases/delete-customer'
 
 import { ensureAuthenticated } from '../middlewares/ensure-authenticated'
-import { DeleteCustomerController } from '@modules/application/use-cases/delete-customer'
 
 
 const customersRoutes = Router()
