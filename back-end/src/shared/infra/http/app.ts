@@ -1,9 +1,10 @@
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import 'reflect-metadata'
 import cors from 'cors'
 
 import '@shared/container'
 import createConnection from '@shared/infra/typeorm'
+import { AppError } from '@shared/errors/app-error'
 
 import { router } from './routes'
 
@@ -27,6 +28,23 @@ app.use(cors(options))
 //
 
 app.use(router)
+
+// AppError
+
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+    if (err instanceof AppError) {
+        return response.status(err.statusCode).json({
+            message: err.message
+        })
+    }
+
+    return response.status(500).json({
+        status: "error",
+        message: `Internal server error - ${err.message}`,
+    })
+});
+
+//
 
 
 export { app }
