@@ -47,8 +47,30 @@ class CustomerRepository implements ICustomerRepository {
         throw new Error("Method not implemented.");
     }
 
-    async update(data: ICustomerDTO): Promise<Customer> {
-        throw new Error("Method not implemented.");
+    async update({
+        id,
+        name,
+        email,
+        address,
+        birthDate
+    }: ICustomerDTO): Promise<Customer> {
+        const customer = await this.repository.findOne(id)
+
+        if (!customer) {
+            throw new Error('Customer not found')
+        }
+
+        const newCustomer = this.repository.create({
+            id,
+            name,
+            email,
+            address,
+            birthDate
+        })
+
+        await this.repository.save(newCustomer)
+
+        return newCustomer
     }
 
 }
