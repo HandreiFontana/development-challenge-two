@@ -9,6 +9,7 @@ interface ICustomerRepository {
     ): Promise<Customer[]>
     get(id: string): Promise<Customer>
     update(data: ICustomerDTO): Promise<Customer>
+    delete(id: string): Promise<void>
 }
 
 export { ICustomerRepository }
