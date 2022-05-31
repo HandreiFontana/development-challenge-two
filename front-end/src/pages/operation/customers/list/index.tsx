@@ -91,10 +91,10 @@ const CustomersList: React.FC = () => {
         <Paper elevation={3} className={classes.paper}>
 
             <FormHeader
-                title="Cidades"
+                title="Pacientes"
                 icon={ListIcon}
-                newRoute="/cities/new"
-                helpText="Nesta opção serão informadas as cidades brasileiras, pertencentes a cada unidade da federação."
+                newRoute="/customers/new"
+                helpText="Nesta opção serão informadas os pacientes, com seu email, seu endereço e sua data de nascimento."
             />
 
             <CustomTable
@@ -104,7 +104,7 @@ const CustomersList: React.FC = () => {
                 handleChangeRowsPerPage={handleChangeRowsPerPage}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                editRoute="/cities/edit"
+                editRoute="/customers/edit"
                 handleDelete={handleDelete}
                 handleRecordToDelete={setRecordToDelete}
             />
