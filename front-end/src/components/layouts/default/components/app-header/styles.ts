@@ -6,15 +6,17 @@ const useStyles = makeStyles((theme: Theme) =>
         appbar: {
             display: 'flex',
             alignItems: 'center',
-            height: '60px'
+            height: '60px',
         },
+
         toolbar: {
-            width: "800px",
+            width: "1000px",
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
         },
+
         logo: {
-            height: "40px",
+            height: "30px",
         }
     }),
 )
