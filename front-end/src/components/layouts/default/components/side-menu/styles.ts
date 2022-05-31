@@ -87,6 +87,12 @@ const useStyles = makeStyles((theme: Theme) => ({
         lineHeight: '1 !important',
         margin: '0 !important'
     },
+
+    lastItem: {
+        lineHeight: 0.9,
+        padding: 0,
+        margin: 0
+    }
 }));
 
 export { useStyles }

@@ -3,14 +3,18 @@ import { Switch } from 'react-router-dom'
 
 import Route from './route'
 import SignIn from '../pages/authentication/sign-in'
-import ClientList from '../pages/operation/client/list'
+
+import { CustomersList, Home, DoctorsList, ExamsList } from 'pages/operation'
 
 
 const Routes: React.FC = () => (
     <Switch>
         <Route path="/" exact component={SignIn} />
 
-        <Route path="/dashboard" exact component={ClientList} isPrivate />
+        <Route path="/home" exact component={Home} isPrivate />
+        <Route path="/customers" exact component={CustomersList} isPrivate />
+        <Route path="/doctors" exact component={DoctorsList} isPrivate />
+        <Route path="/exams" exact component={ExamsList} isPrivate />
     </Switch>
 )
 
