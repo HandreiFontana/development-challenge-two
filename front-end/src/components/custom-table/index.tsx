@@ -63,7 +63,7 @@ const CustomTable: React.FC<Props> = ({
                 <TableContainer className={classes.tableContainer}>
                     <Table stickyHeader>
 
-                        <TableHead>
+                        <TableHead >
                             <TableRow>
                                 <TableCell className={classes.rowTableIcon}>&nbsp;</TableCell>
                                 <TableCell className={classes.rowTableIcon}>&nbsp;</TableCell>
@@ -79,9 +79,9 @@ const CustomTable: React.FC<Props> = ({
 
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow hover>
-                                    <TableCell className={classes.rowTableIcon}><EditIcon className={classes.tableIcon} onClick={() => history.push(`${editRoute}/${row.id}`)} /></TableCell>
-                                    <TableCell className={classes.rowTableIcon}><DeleteIcon className={classes.tableIcon} onClick={() => handleClickOpen(row.id)} /></TableCell>
+                                <TableRow hover >
+                                    <TableCell className={classes.rowTableIcon}><EditIcon className={classes.editIcon} onClick={() => history.push(`${editRoute}/${row.id}`)} /></TableCell>
+                                    <TableCell className={classes.rowTableIcon}><DeleteIcon className={classes.deleteIcon} onClick={() => handleClickOpen(row.id)} /></TableCell>
                                     {headCells.map((headCell) => (
                                         <TableCell align="left" style={{ minWidth: 100 }}>
                                             {

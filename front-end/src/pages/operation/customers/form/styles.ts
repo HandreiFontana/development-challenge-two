@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         overflow: 'auto'
     },
 
+    leftInputs: {
+        paddingRight: '10px'
+    },
+
     head: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,

@@ -151,8 +151,8 @@ const CustomerForm: React.FC = () => {
 
         <Grid container spacing={0} className={classes.formContainer}>
 
-          <Grid container item xs={6} spacing={1}>
-            <Grid item xs={11}>
+          <Grid container item xs={6} className={classes.leftInputs}>
+            <Grid item xs={12}>
               <TextField
                 id="name"
                 name="name"
@@ -178,8 +178,8 @@ const CustomerForm: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Grid container item xs={6} spacing={1}>
-            <Grid item xs={11}>
+          <Grid container item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 id="email"
                 name="email"
@@ -197,8 +197,8 @@ const CustomerForm: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Grid container item xs={8} spacing={1}>
-            <Grid item xs={11}>
+          <Grid container item xs={8} className={classes.leftInputs}>
+            <Grid item xs={12}>
               <TextField
                 id="address"
                 name="address"
@@ -216,7 +216,7 @@ const CustomerForm: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Grid container item xs={4} spacing={1}>
+          <Grid container item xs={4}>
             <Grid item xs={12}>
               <TextField
                 id="birthDateUnformatted"

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 
     tableContainer: {
-        height: 'calc(100vh - 330px)'
+        height: 'calc(100vh - 330px)',
     },
 
     inputInput: {
@@ -62,18 +62,25 @@ const useStyles = makeStyles((theme: Theme) => ({
         overflow: 'hidden'
     },
 
-    tableIcon: {
+    editIcon: {
         fontSize: 20,
         cursor: 'pointer',
         color: theme.palette.primary.main,
-        marginTop: '3px'
+        margin: '3px 10px 0 10px'
+    },
+
+    deleteIcon: {
+        fontSize: 20,
+        cursor: 'pointer',
+        color: theme.palette.primary.main,
+        margin: '3px 10px 0 0px'
     },
 
     rowTableIcon: {
         color: theme.palette.primary.main,
         textAlign: 'center',
-        minWidth: '45px',
-        width: '45px',
+        minWidth: '25px',
+        width: '25px',
     },
 
     tableRow: {
