@@ -14,6 +14,7 @@ type Props = {
     isLoading: number,
     handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => Promise<void>,
     rowsPerPage: number,
+    handleChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number,) => void,
     page: number,
     editRoute: string,
     handleDelete: () => void,
@@ -26,6 +27,7 @@ const CustomTable: React.FC<Props> = ({
     isLoading,
     handleChangeRowsPerPage,
     rowsPerPage,
+    handleChangePage,
     page,
     editRoute,
     handleDelete,
@@ -51,9 +53,6 @@ const CustomTable: React.FC<Props> = ({
         handleDelete()
     }
 
-    const handleChangePage = async (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    }
-
     return (
         <>
             <div className={isLoading === 1 ? classes.linearProgressOn : classes.linearProgressOff}>
@@ -71,12 +70,7 @@ const CustomTable: React.FC<Props> = ({
 
                                 {headCells.map((headCell, index) => (
                                     <TableCell align="left" style={{ width: `${typeof (headCell.width) !== 'undefined' ? (headCell.width * 100 / 11) : defaultWidth}%`, fontWeight: 'bold' }}>
-                                        <TableSortLabel
-                                            active={true}
-                                            direction="asc"
-                                        >
-                                            {headCell.label}
-                                        </TableSortLabel>
+                                        {headCell.label}
                                     </TableCell>
                                 ))}
 
