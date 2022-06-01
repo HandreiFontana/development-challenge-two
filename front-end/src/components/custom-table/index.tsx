@@ -11,6 +11,7 @@ import { useStyles } from './styles'
 type Props = {
     headCells: ITableHeadCell[],
     rows: any[],
+    totalRows: number,
     isLoading: number,
     handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => Promise<void>,
     rowsPerPage: number,
@@ -24,6 +25,7 @@ type Props = {
 const CustomTable: React.FC<Props> = ({
     headCells,
     rows,
+    totalRows,
     isLoading,
     handleChangeRowsPerPage,
     rowsPerPage,
@@ -101,7 +103,7 @@ const CustomTable: React.FC<Props> = ({
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50, 100]}
                     component="div"
-                    count={20}
+                    count={totalRows}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}

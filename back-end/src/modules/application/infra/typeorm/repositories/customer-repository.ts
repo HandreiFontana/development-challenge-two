@@ -37,8 +37,8 @@ class CustomerRepository implements ICustomerRepository {
                 'cus.address as address'
             ])
             .addOrderBy('cus.name')
-            .offset(rowsPerPage * (page - 1))
-            .limit(rowsPerPage)
+            .take(rowsPerPage)
+            .skip(rowsPerPage * page)
             .getRawMany()
 
         return customers

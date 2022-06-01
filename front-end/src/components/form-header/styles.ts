@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontWeight: 'bold',
         alignItems: 'center',
         justifyContent: 'space-between',
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
+        marginBottom: '15px !important'
     },
 
     formTitleLeft: {

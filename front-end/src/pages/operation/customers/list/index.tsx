@@ -34,8 +34,9 @@ const headCells: ITableHeadCell[] = [
 
 const CustomersList: React.FC = () => {
   const [loading, setLoading] = useState(0)
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsCount, setRowsCount] = useState(0)
   const [customersList, setCustomersList] = useState<ICustomerDTO[]>([])
   const [recordToDelete, setRecordToDelete] = useState<string | null>('')
 
@@ -50,6 +51,13 @@ const CustomersList: React.FC = () => {
         const { data } = listResponse
 
         setCustomersList(data)
+
+        await api
+          .post('/customers/count')
+          .then(countResponse => {
+            const { count } = countResponse.data
+            setRowsCount(count)
+          })
       })
       .then(() => setLoading(0))
       .catch(error => {
@@ -96,6 +104,7 @@ const CustomersList: React.FC = () => {
       <CustomTable
         headCells={headCells}
         rows={customersList}
+        totalRows={rowsCount}
         isLoading={loading}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
         rowsPerPage={rowsPerPage}
