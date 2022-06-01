@@ -10,6 +10,7 @@ interface ICustomerRepository {
     get(id: string): Promise<Customer>
     update(data: ICustomerDTO): Promise<Customer>
     delete(id: string): Promise<void>
+    count(): Promise<number>
 }
 
 export { ICustomerRepository }

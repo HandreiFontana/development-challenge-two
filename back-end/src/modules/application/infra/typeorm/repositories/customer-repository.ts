@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Like, Repository } from "typeorm";
 
 import { ICustomerDTO } from "@modules/application/dtos";
 import { ICustomerRepository } from "@modules/application/repositories";
@@ -33,7 +33,7 @@ class CustomerRepository implements ICustomerRepository {
                 'cus.id as id',
                 'cus.name as name',
                 'cus.email as email',
-                'cus.birth_date as birthDate',
+                `TO_CHAR(cus.birth_date::DATE, 'dd/mm/yyyy') as birthDate`,
                 'cus.address as address'
             ])
             .addOrderBy('cus.name')
@@ -42,6 +42,12 @@ class CustomerRepository implements ICustomerRepository {
             .getRawMany()
 
         return customers
+    }
+
+    async count(): Promise<number> {
+        const countCustomer = await this.repository.count()
+
+        return countCustomer
     }
 
     async get(id: string): Promise<Customer> {
