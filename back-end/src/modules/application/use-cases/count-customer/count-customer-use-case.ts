@@ -10,7 +10,6 @@ class CountCustomerUseCase {
     ) { }
 
     async execute(): Promise<number> {
-        console.log("customersCount")
         const customersCount = await this.customerRepository.count()
 
         return customersCount
