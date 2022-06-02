@@ -97,15 +97,13 @@ const CustomerForm: React.FC = () => {
       birthDateUnformatted: data.birthDateUnformatted,
     }
 
-    console.log(payLoad)
-
     if (params.id) {
       const { id } = params
 
       payLoad.id = id
 
       await api
-        .put(`/customers/${id}`, payLoad)
+        .put('/customers', payLoad)
         .then(history.push('/customers'))
         .then(() => setTimeout(() => { firstInputElement.current.focus() }, 0))
         .catch(error => {
@@ -125,7 +123,7 @@ const CustomerForm: React.FC = () => {
           return error.response.data.data
         })
     }
-  }, [])
+  }, [history, params, reset])
 
   const handleChange = (formField) => {
     setMainError('')
@@ -227,6 +225,7 @@ const CustomerForm: React.FC = () => {
                 variant="filled"
                 margin="dense"
                 size="small"
+                type="date"
                 fullWidth={true}
                 {...register("birthDateUnformatted",
                   { onChange: (e) => handleChange(e) }
